@@ -1,14 +1,14 @@
 import './scss/styles.scss';
 
 import { EventEmitter } from './components/base/events';
-import { AppState } from './components/common/appdata';
+import { AppState } from './components/common/appData';
 import { Basket } from './components/common/basket';
 import { Card } from './components/common/card';
 import { Contacts } from './components/common/contacts';
 import { Modal } from './components/common/modal';
 import { Order } from './components/common/order';
 import { Page } from './components/common/page';
-import { WebLarekApi } from './components/common/WebLarekApi';
+import { WebLarekApi } from './components/common/webLarekApi';
 import { Success } from './components/common/success';
 import { API_URL, CDN_URL } from './utils/constants';
 import { ensureElement } from './utils/utils';
