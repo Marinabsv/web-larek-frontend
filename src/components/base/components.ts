@@ -1,9 +1,11 @@
+
 export abstract class Component<T> {
 	protected constructor(protected readonly container: HTMLElement) {}
 
 	toggleClass(element: HTMLElement, className: string, force?: boolean) {
 		element.classList.toggle(className, force);
 	}
+	
 
 	protected setText(element: HTMLElement, value: unknown) {
 		if (element) {
@@ -20,11 +22,11 @@ export abstract class Component<T> {
 
 	protected setHidden(element: HTMLElement) {
 		element.style.display = 'none';
-	}
+	}///?
 
 	protected setVisible(element: HTMLElement) {
 		element.style.removeProperty('display');
-	}
+	}///?
 
 	protected setImage(element: HTMLImageElement, src: string, alt?: string) {
 		if (element) {
