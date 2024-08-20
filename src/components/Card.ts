@@ -68,6 +68,19 @@ export class Card extends Component<IProduct> {
 
 	set category(value: string) {
 		this.setText(this._category, value);
+		if (value === 'софт-скил') {
+			this._category?.classList.add('card__category_soft');
+		} else if (value === 'другое') {
+			this._category?.classList.add('card__category_other');
+		} else if (value === 'хард-скил') {
+			this._category?.classList.add('card__category_hard');
+		} else if (value === 'дополнительное') {
+			this._category?.classList.add('card__category_additional');
+		}
+	}
+
+	get category(): string {
+		return this._category.textContent || '';
 	}
 
 	set button(value: string) {

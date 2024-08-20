@@ -74,6 +74,7 @@ events.on('card:open', (item: IProduct) => {
 	});
 	card.button = appData.getItems(item) ? 'Удалить из корзины' : 'В корзину';
 	modal.render({ content: card.render(item) });
+
 });
 
 // Открыть корзину
@@ -108,6 +109,7 @@ events.on('basket:change', () => {
 		return card.render(item);
 	});
 	basket.total = appData.basket.total;
+	
 });
 
 // адресс и оплата

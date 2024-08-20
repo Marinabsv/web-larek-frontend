@@ -1,3 +1,4 @@
+
 import {
 	FormErrors,
 	IBasket,
@@ -43,15 +44,19 @@ export class AppData {
 	addCard(item: IProduct) {
 		this.basket.items.push(item.id);
 		this.basket.total = this.basket.total + item.price;
-		this.events.emit('basket:change', this.basket);
+		this.basketChange();
 	}
 
 	deleteCard(item: IProduct) {
 		this.basket.items = this.basket.items.filter((id) => id !== item.id);
-		this.basket.total = this.basket.total + item.price;
+		this.basket.total = this.basket.total - item.price;
+		this.basketChange();
+	}
+	
+	
+	basketChange(){
 		this.events.emit('basket:change', this.basket);
 	}
-
 
 	setPayment(method: Payment) {
 		this.order.payment = method;
@@ -94,6 +99,6 @@ export class AppData {
 	clearBasket() {
 		this.basket.items = [];
 		this.basket.total = 0;
-		this.events.emit('basket:change', this.basket);
+		this.basketChange();
 	}
 }
