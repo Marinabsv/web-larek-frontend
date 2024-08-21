@@ -36,6 +36,15 @@ const contacts = new Contacts(
 	events
 );
 
+const success = new Success(
+	cloneTemplate(ensureElement<HTMLTemplateElement>('#success')),
+	{
+		onClick: () => {
+			modal.close();
+		},
+	}
+);
+
 //// Получение списка
 api
 	.getCardList()
@@ -74,7 +83,6 @@ events.on('card:open', (item: IProduct) => {
 	});
 	card.button = appData.getItems(item) ? 'Удалить из корзины' : 'В корзину';
 	modal.render({ content: card.render(item) });
-
 });
 
 // Открыть корзину
@@ -86,6 +94,13 @@ events.on('basket:open', () => {
 
 // Оформить
 events.on('order:open', () => {
+	appData.order = {
+		items: [],
+		payment: undefined,
+		email: '',
+		phone: '',
+		address: '',
+	};
 	modal.render({
 		content: order.render({
 			payment: '',
@@ -109,7 +124,6 @@ events.on('basket:change', () => {
 		return card.render(item);
 	});
 	basket.total = appData.basket.total;
-	
 });
 
 // адресс и оплата
@@ -177,19 +191,10 @@ events.on('contacts:submit', () => {
 	api
 		.orderProduct({ ...appData.order, ...appData.basket })
 		.then((result) => {
-			const success = new Success(
-				cloneTemplate(ensureElement<HTMLTemplateElement>('#success')),
-				{
-					onClick: () => {
-						modal.close();
-						appData.clearBasket();
-					},
-				}
-			);
-
 			modal.render({
 				content: success.render(result),
 			});
+			appData.clearBasket();
 		})
 		.catch((err) => {
 			console.error(err);

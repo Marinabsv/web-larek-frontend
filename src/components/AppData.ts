@@ -55,7 +55,7 @@ export class AppData {
 	
 	
 	basketChange(){
-		this.events.emit('basket:change', this.basket);
+		this.events.emit('basket:change');
 	}
 
 	setPayment(method: Payment) {
